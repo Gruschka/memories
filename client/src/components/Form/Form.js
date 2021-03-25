@@ -4,6 +4,7 @@ import { TextField, Button, Typography, Paper, FormHelperText } from '@material-
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost, setCurrentId } from '../../actions/posts';
+import { selectCurrentId } from '../../store/posts/selectors';
 
 const Form = () => {
     const classes = useStyles();
@@ -12,7 +13,7 @@ const Form = () => {
         creator: '', title: '', message: '', tags: '', selectedFile: ''
     });
     
-    const currentId = useSelector(state => state.posts.currentId);
+    const currentId = useSelector(selectCurrentId);
     const post = useSelector((state) => currentId ? state.posts.posts.find(p => p._id === currentId) : null);
     useEffect(() => {
         if(post) setPostData(post)
