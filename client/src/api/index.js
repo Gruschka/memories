@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 //Axios Instance
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+const API = axios.create({ baseURL: 'https://memories-mongo-project.herokuapp.com' })
 //On each request, we add the token
 API.interceptors.request.use( (req) => {
     if(localStorage.getItem('profile')){
