@@ -23,7 +23,8 @@ export function logout(){
 export function signIn(formData, history){
     return async (dispatch) => {
         try {
-            //login...
+            const { data } = await api.signIn(formData);
+            dispatch({ type: types.AUTH, data})
             history.push('/');
         } catch (error) {
             console.log(`error`, error)
@@ -34,7 +35,8 @@ export function signIn(formData, history){
 export function signUp(formData, history){
     return async (dispatch) => {
         try {
-            //login...
+            const { data } = await api.signUp(formData);
+            dispatch({ type: types.AUTH, data})
             history.push('/');
         } catch (error) {
             console.log(`error`, error)

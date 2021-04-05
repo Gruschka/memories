@@ -38,13 +38,13 @@ const Auth = () => {
     }
 
     const handleChange = (e) => {
-        const { field, value } = e.target;
-        setFormData({ ...formData, [field]: value })
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value })
     }
 
     const switchMode = () => {
         setIsSignUp((prevIsSignUp) => !prevIsSignUp);
-        handleShowPassword(false);
+        setShowPassword(false);
     }
     
     const googleSuccess = async (res) => {

@@ -6,6 +6,7 @@ import memories from '../../images/memories.png';
 import { Link } from 'react-router-dom'
 import { logout } from '../../actions/auth/index';
 import { useHistory, useLocation } from 'react-router-dom';
+import decode from 'jwt-decode';
 
 const NavBar = () => {
 
@@ -17,7 +18,11 @@ const NavBar = () => {
 
     useEffect(() => {
         const token = user?.token;
-        //JWT...
+        if(token){
+            const decodedToken = decode(token);
+            //Handle expired token
+            if(decodedToken.exp * 1000 < new Date().getTime()) onLogout();
+        }
         
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])

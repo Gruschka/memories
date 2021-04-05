@@ -3,7 +3,9 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 
 //Initialize App
 const app = express();
@@ -12,6 +14,7 @@ dotenv.config();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use(morgan('combined'));
 
 app.get('/', (req, res) => {
     res.send('Welcome to Memories API')
@@ -26,5 +29,5 @@ mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnified
 
 mongoose.set('useFindAndModify', false); // console warnings
 
-
 app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
